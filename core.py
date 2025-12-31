@@ -109,32 +109,40 @@ def controle_de_stock():
             print("Nenhum item com estoque critico. ")
 
 def registo_de_emprestimos():
-    ''' Função para registo de emprestimos de itens'''
-    id_item = int(input("Qual o ID do item que desejas pegar emprestado? "))
+    """Função para registo de empréstimos de itens"""
+
+    id_item = input("Qual o ID do item que deseja pegar emprestado? ")
+    quantidade = int(input("Qual a quantidade desejada? "))
 
     for item in inventario:
-        if item["id"] == id_item:
+        if item["item"] == id_item:
+            if quantidade <= 0:
+                print("A quantidade deve ser maior que zero.")
+                return
 
-            if item["quantidade"] > 0:
-                item["quantidade"] -=1
-                print(f'Empréstimo realizado com sucesso!')
-                print(f'Item: {item["nome"]}')
-                print(f'Quantidade restante no estoque: {item["quantidade"]}')
-                    
-            else:
-                print("Este item está sem estoque no momento!")
-                
-        print("ID não encontrado no inventário.")
+            if quantidade > item["quantidade"]:
+                print("Quantidade solicitada maior que o estoque disponível.")
+                return
+
+            item["quantidade"] -= quantidade
+
+            print("Empréstimo realizado com sucesso!")
+            print(f'Item: {item["nome"]}')
+            print(f'Quantidade emprestada: {quantidade}')
+            print(f'Quantidade restante no estoque: {item["quantidade"]}')
+            return
+
+    print("ID não encontrado no inventário.")
 
     
 
-def total_by_cat(inventario):
+def total_by_cat():
     categorias = {}
 
     for item in inventario:   
         cat = item['categoria']
-        categorias[cat] = categorias.get(cat, 0) + 1
-        
+        categorias[cat] = categorias.get(cat, 0) + item["quantidade"]
+    
     return categorias 
 
 def valor_total():
