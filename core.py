@@ -1,4 +1,4 @@
-iinventario = []
+inventario = []
 
 def cadastrar_item():
     print("\n--- Cadastro de Item ---")

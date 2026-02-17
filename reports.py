@@ -1,24 +1,25 @@
-from core import  inventario
-
+from core import inventario
 def gerar_relatorio_categoria():
     '''Função para gerar relatório de itens por categoria'''
     
+    if not inventario:
+        print("O inventário está vazio.")
+        return
+
     categorias = {}
     for item in inventario:
-        categoria = item['categoria']
-        if categoria not in categorias:
-            categorias[categoria] = []
-        categorias[categoria].append(item)
+        cat = item['categoria']
+        if cat not in categorias:
+            categorias[cat] = []
+        categorias[cat].append(item)
     
+    print("\n=== RELATÓRIO POR CATEGORIA ===")
     for categoria, itens in categorias.items():
-        print(f"Categoria: {categoria}")
+        print(f"\n📂 CATEGORIA: {categoria.upper()}")
+        print("-" * 30)
         for item in itens:
-            print(f"""  ID: {item['item']} 
-                  Nome: {item['nome']} 
-                  Quantidade: {item['quantidade']} 
-                  Preço: {item['preco']} 
-                  Estado: {item['estado']}  
-                  Observações: {item['observacoes']}"""
-                  )
-                  
-        print('\n')
+            # CORREÇÃO: Alterado de item['item'] para item['id']
+            print(f"ID: {item['id']} | Nome: {item['nome']}")
+            print(f"Quantidade: {item['quantidade']} | Preço: R${item['preco']}")
+            print(f"Estado: {item['estado']} | Obs: {item['observacoes']}")
+            print("-" * 15)
