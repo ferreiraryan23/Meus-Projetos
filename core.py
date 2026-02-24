@@ -2,26 +2,34 @@ inventory = []
 
 def register_item():
     print("\n--- Item Registration ---")
-    item_id = len(inventory) + 1
-    name = str(input("Enter item name: "))
-    quantity = int(input("Enter item quantity: "))
-    price = float(input("Enter item price: ")) 
-    category = str(input("Enter item category: "))
-    condition = str(input("Enter item condition (new/used): ")).lower()
-    notes = str(input("Enter additional notes: "))
-    
-    item = {
-        'id': item_id,
-        'name': name,
-        'quantity': quantity,
-        'price': price,
-        'category': category,
-        'condition': condition,
-        'notes': notes,
-    }
+    name = str(input("Enter item name: ")).strip()
+    if any(item["name"].lower() == name.lower() for item in inventory):
+        print(f"❌ Error: An item with the name '{name}' already exists!")
+        return  # Sai da função e impede o cadastro
 
-    inventory.append(item)
-    print(f"Item '{name}' successfully registered with ID {item_id}!")
+    try:      
+        quantity = int(input("Enter item quantity: "))
+        price = float(input("Enter item price: ")) 
+        category = str(input("Enter item category: "))
+        condition = str(input("Enter item condition (new/used): ")).lower()
+        notes = str(input("Enter additional notes: "))
+
+        item_id = len(inventory) + 1
+        
+        item = {
+            'id': item_id,
+            'name': name,
+            'quantity': quantity,
+            'price': price,
+            'category': category,
+            'condition': condition,
+            'notes': notes,
+        }
+        inventory.append(item)
+        print(f"✅ Item '{name}' successfully registered with ID {item_id}!")
+
+    except ValueError:
+        print("❌ Error: Quantity and Price must be numbers. Registration cancelled.")
 
 def list_items():
     print("\n--- Full Inventory ---")

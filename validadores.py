@@ -1,14 +1,14 @@
-from core import inventario
+from core import inventory
 
-def validar_por_id(id_item):
-    """Verifica se um ID existe no inventário. Suporta ID como int ou string numérica."""
+def validate_by_id(item_id):
+    """Checks if an ID exists in the inventory. Supports ID as int or numeric string."""
     try:
-        id_item = int(id_item) #
+        item_id = int(item_id)
     except ValueError:
         return False
         
-    return any(item["id"] == id_item for item in inventario)
+    return any(item["id"] == item_id for item in inventory)
 
-def validar_por_nome(nome):
-    """Verifica se um nome (case-insensitive) já existe no inventário."""
-    return any(item["nome"].lower() == nome.lower() for item in inventario)
+def validate_by_name(name):
+    # check if there is a item with the same name
+    return any(item["name"].lower() == name.strip().lower() for item in inventory)

@@ -1,25 +1,25 @@
-from core import inventario
-def gerar_relatorio_categoria():
-    '''Função para gerar relatório de itens por categoria'''
+from core import inventory
+
+def generate_category_report():
+    '''Function to generate a report of items grouped by category'''
     
-    if not inventario:
-        print("O inventário está vazio.")
+    if not inventory:
+        print("The inventory is empty.")
         return
 
-    categorias = {}
-    for item in inventario:
-        cat = item['categoria']
-        if cat not in categorias:
-            categorias[cat] = []
-        categorias[cat].append(item)
+    categories = {}
+    for item in inventory:
+        cat = item['category']
+        if cat not in categories:
+            categories[cat] = []
+        categories[cat].append(item)
     
-    print("\n=== RELATÓRIO POR CATEGORIA ===")
-    for categoria, itens in categorias.items():
-        print(f"\n📂 CATEGORIA: {categoria.upper()}")
+    print("\n=== REPORT BY CATEGORY ===")
+    for category, items in categories.items():
+        print(f"\n📂 CATEGORY: {category.upper()}")
         print("-" * 30)
-        for item in itens:
-            # CORREÇÃO: Alterado de item['item'] para item['id']
-            print(f"ID: {item['id']} | Nome: {item['nome']}")
-            print(f"Quantidade: {item['quantidade']} | Preço: R${item['preco']}")
-            print(f"Estado: {item['estado']} | Obs: {item['observacoes']}")
+        for item in items:
+            print(f"ID: {item['id']} | Name: {item['name']}")
+            print(f"Quantity: {item['quantity']} | Price: ${item['price']}")
+            print(f"Condition: {item['condition']} | Notes: {item['notes']}")
             print("-" * 15)

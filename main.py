@@ -1,36 +1,40 @@
 def menu():
     while True:
-        print("\n=== SISTEMA DE INVENTÁRIO ===")
-        print("1. Cadastrar Item")
-        print("2. Listar Itens")
-        print("3. Buscar Item")
-        print("4. Adicionar/Remover Estoque")
-        print("5. Registrar Empréstimo")
-        print("6. Ver Valor Total do Estoque")
-        print("0. Sair")
+        print("\n=== INVENTORY SYSTEM ===")
+        print("1. Register Item")
+        print("2. List Items")
+        print("3. Search Item")
+        print("4. Add/Remove Stock")
+        print("5. Record Loan")
+        print("6. View Total Stock Value")
+        print("0. Exit")
         
-        opcao = input("Escolha uma opção: ")
+        choice = input("Choose an option: ")
 
-        if opcao == "1":
-            from core import cadastrar_item
-            cadastrar_item()
-        elif opcao =="2":
-            from core import listar_itens
-            listar_itens()
-        elif opcao == "3":
-            from core import buscar_item
-            buscar_item()
-        elif opcao == "4":
+        if choice == "1":
+            from core import register_item
+            register_item()
+        elif choice == "2":
+            from core import list_items
+            list_items()
+        elif choice == "3":
+            from core import search_item
+            search_item()
+        elif choice == "4":
             from core import add_or_remove
             add_or_remove()
-        elif opcao == "5":
-            from core import registo_de_emprestimos
-            registo_de_emprestimos()
-        elif opcao == "6":
-            from core import inventario
-            print(f"Valor Total em Estoque: R${sum(i['preco'] * i['quantidade'] for i in inventario):.2f}")
-        elif opcao == "0": break
-        else: print("Opção inválida.")
+        elif choice == "5":
+            from core import loan_registration
+            loan_registration()
+        elif choice == "6":
+            from core import inventory
+            total_value = sum(i['price'] * i['quantity'] for i in inventory)
+            print(f"Total Stock Value: ${total_value:.2f}")
+        elif choice == "0": 
+            print("Exiting system...")
+            break
+        else: 
+            print("Invalid option.")
 
 if __name__ == "__main__":
     menu()
