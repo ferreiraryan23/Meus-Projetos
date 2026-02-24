@@ -1,87 +1,87 @@
-inventario = []
+inventory = []
 
-def cadastrar_item():
-    print("\n--- Cadastro de Item ---")
-    id_item = len(inventario) + 1
-    nome = str(input("Digite o nome do item: "))
-    quantidade = int(input("Digite a quantidade do item: "))
-    preco = float(input("Digite o preço do item: ")) 
-    categoria = str(input("Digite a categoria do item: "))
-    estado = str(input("Digite o estado do item (novo/usado): ")).lower()
-    observacoes = str(input("Digite observações adicionais: "))
+def register_item():
+    print("\n--- Item Registration ---")
+    item_id = len(inventory) + 1
+    name = str(input("Enter item name: "))
+    quantity = int(input("Enter item quantity: "))
+    price = float(input("Enter item price: ")) 
+    category = str(input("Enter item category: "))
+    condition = str(input("Enter item condition (new/used): ")).lower()
+    notes = str(input("Enter additional notes: "))
     
     item = {
-        'id': id_item,
-        'nome': nome,
-        'quantidade': quantidade,
-        'preco': preco,
-        'categoria': categoria,
-        'estado': estado,
-        'observacoes': observacoes,
+        'id': item_id,
+        'name': name,
+        'quantity': quantity,
+        'price': price,
+        'category': category,
+        'condition': condition,
+        'notes': notes,
     }
 
-    inventario.append(item)
-    print(f"Item '{nome}' cadastrado com sucesso com ID {id_item}!")
+    inventory.append(item)
+    print(f"Item '{name}' successfully registered with ID {item_id}!")
 
-def listar_itens():
-    print("\n--- Inventário Completo ---")
-    if not inventario:
-        print("Nenhum item cadastrado.")
+def list_items():
+    print("\n--- Full Inventory ---")
+    if not inventory:
+        print("No items registered.")
         return
-    for item in inventario:
-        print(f"ID: {item['id']} | Nome: {item['nome']} | Qtd: {item['quantidade']} | Preço: R${item['preco']:.2f} | Cat: {item['categoria']}")
+    for item in inventory:
+        print(f"ID: {item['id']} | Name: {item['name']} | Qty: {item['quantity']} | Price: ${item['price']:.2f} | Cat: {item['category']}")
 
-def buscar_por_nome_e_categoria():
-    print("\n--- Busca ---")
-    nome_busca = input("Digite o nome (ou deixe vazio): ").lower()
-    cat_busca = input("Digite a categoria (ou deixe vazio): ").lower()
+def search_item():
+    print("\n--- Search ---")
+    search_name = input("Enter name (or leave blank): ").lower()
+    search_cat = input("Enter category (or leave blank): ").lower()
     
-    resultados = [item for item in inventario
-                  if (nome_busca in item['nome'].lower() if nome_busca else False) or 
-                     (cat_busca in item['categoria'].lower() if cat_busca else False)]
+    results = [item for item in inventory
+                  if (search_name in item['name'].lower() if search_name else False) or 
+                     (search_cat in item['category'].lower() if search_cat else False)]
     
-    if not resultados:
-        print('Nenhum item encontrado com esses parâmetros.')
+    if not results:
+        print('No items found with these parameters.')
     else:
-        for item in resultados:
-            print(f"ID: {item['id']} - Nome: {item['nome']} ({item['categoria']})")
+        for item in results:
+            print(f"ID: {item['id']} - Name: {item['name']} ({item['category']})")
 
 def add_or_remove():
     try:
-        id_item = int(input("Qual o ID do item? "))
-        operacao = input("Deseja adicionar ou remover? (add/rem): ").lower()
-        qtd_alterar = int(input("Quantidade: "))
+        item_id = int(input("What is the item ID? "))
+        operation = input("Do you want to add or remove? (add/rem): ").lower()
+        amount_to_change = int(input("Quantity: "))
 
-        for item in inventario:
-            if item["id"] == id_item:
-                if operacao == "add":
-                    item["quantidade"] += qtd_alterar
-                    print(f"Novo total de {item['nome']}: {item['quantidade']}")
-                elif operacao == "rem":
-                    if item["quantidade"] >= qtd_alterar:
-                        item["quantidade"] -= qtd_alterar
-                        print(f"Novo total de {item['nome']}: {item['quantidade']}")
+        for item in inventory:
+            if item["id"] == item_id:
+                if operation == "add":
+                    item["quantity"] += amount_to_change
+                    print(f"New total for {item['name']}: {item['quantity']}")
+                elif operation == "rem":
+                    if item["quantity"] >= amount_to_change:
+                        item["quantity"] -= amount_to_change
+                        print(f"New total for {item['name']}: {item['quantity']}")
                     else:
-                        print("Erro: Estoque insuficiente.")
+                        print("Error: Insufficient stock.")
                 return
-        print("ID não encontrado.")
+        print("ID not found.")
     except ValueError:
-        print("Erro: Digite valores numéricos válidos.")
+        print("Error: Please enter valid numerical values.")
 
-def registo_de_emprestimos():
+def loan_registration():
     try:
-        id_item = int(input("Qual o ID do item para empréstimo? "))
-        quantidade = int(input("Qual a quantidade desejada? "))
+        item_id = int(input("What is the ID of the item to be loaned? "))
+        quantity = int(input("What is the desired quantity? "))
 
-        for item in inventario:
-            if item["id"] == id_item: 
-                if quantidade > 0 and item["quantidade"] >= quantidade:
-                    item["quantidade"] -= quantidade
-                    print(f"Empréstimo de {quantidade}x {item['nome']} realizado!")
+        for item in inventory:
+            if item["id"] == item_id: 
+                if quantity > 0 and item["quantity"] >= quantity:
+                    item["quantity"] -= quantity
+                    print(f"Loan of {quantity}x {item['name']} completed!")
                     return
                 else:
-                    print("Quantidade indisponível ou inválida.")
+                    print("Quantity unavailable or invalid.")
                     return
-        print("ID não encontrado.")
+        print("ID not found.")
     except ValueError:
-        print("Erro: Entrada inválida.")
+        print("Error: Invalid input.")
