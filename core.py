@@ -5,7 +5,7 @@ def register_item():
     name = str(input("Enter item name: ")).strip()
     if any(item["name"].lower() == name.lower() for item in inventory):
         print(f"❌ Error: An item with the name '{name}' already exists!")
-        return  # Sai da função e impede o cadastro
+        return  
 
     try:      
         quantity = int(input("Enter item quantity: "))
