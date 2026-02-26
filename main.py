@@ -1,3 +1,12 @@
+from core import (
+    register_item, 
+    list_items, 
+    search_item, 
+    add_or_remove, 
+    loan_registration,
+    inventory  
+)
+
 def menu():
     while True:
         print("\n=== INVENTORY SYSTEM ===")
@@ -9,32 +18,26 @@ def menu():
         print("6. View Total Stock Value")
         print("0. Exit")
         
-        choice = input("Choose an option: ")
+        choice = input("Choose an option: ").strip()
 
         if choice == "1":
-            from core import register_item
             register_item()
         elif choice == "2":
-            from core import list_items
             list_items()
         elif choice == "3":
-            from core import search_item
             search_item()
         elif choice == "4":
-            from core import add_or_remove
             add_or_remove()
         elif choice == "5":
-            from core import loan_registration
             loan_registration()
         elif choice == "6":
-            from core import inventory
-            total_value = sum(i['price'] * i['quantity'] for i in inventory)
-            print(f"Total Stock Value: ${total_value:.2f}")
+            total_value = sum(item['price'] * item['quantity'] for item in inventory)
+            print(f"Total Stock Value: ${total_value:,.2f}")
         elif choice == "0": 
-            print("Exiting system...")
+            print("Exiting system... Goodbye!")
             break
         else: 
-            print("Invalid option.")
+            print("❌ Invalid option. Please try again.")
 
 if __name__ == "__main__":
     menu()
