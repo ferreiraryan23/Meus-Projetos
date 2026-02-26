@@ -1,67 +1,55 @@
-📦 Inventory Management System (CLI)
+📦 Inventory Management System
 
-A modular Command Line Inventory Management System built in Python.
-This project allows users to register items, manage stock, search inventory, generate reports, and validate input data — all through a structured and maintainable architecture.
 
-🧱 Project Architecture
+A modular Command-Line Inventory Management System built with Python.
+This project demonstrates clean code organization, separation of concerns, and structured application design.
 
-The project is divided into logical modules to improve scalability and maintainability:
+🚀 Overview
 
+This system allows users to:
+
+Register new inventory items
+
+Prevent duplicate item names
+
+Search items by name or category
+
+Add stock to existing items
+
+Remove stock safely
+
+Register item loans
+
+Generate inventory reports
+
+Validate user input using a dedicated validation module
+
+🧱 Project Structure
 inventory-system/
 │
 ├── main.py            # Application entry point
-├── core.py            # Core inventory logic
-├── reports.py         # Reporting and inventory summaries
-├── validators.py      # Input validation logic
+├── core.py            # Inventory business logic
+├── reports.py         # Reporting and summaries
+├── validators.py      # Input validation
 └── README.md
 📌 Module Responsibilities
-File	Responsibility
-main.py	Handles user interaction and menu flow
-core.py	Contains inventory operations (register, search, update, loan, etc.)
-reports.py	Generates inventory summaries and reports
-validators.py	Validates user inputs (numbers, conditions, duplicates, etc.)
-🚀 Features
+Module	Description
+main.py	Handles menu and user interaction
+core.py	Core inventory operations
+reports.py	Inventory reporting and analytics
+validators.py	Input validation and data integrity
 
-✅ Modular architecture
+This modular structure improves:
 
-📦 Item registration with duplicate name prevention
+Maintainability
 
-📋 Full inventory listing
+Scalability
 
-🔎 Search by name or category
+Code readability
 
-➕ Add stock
+Separation of concerns
 
-➖ Remove stock
-
-📤 Loan registration
-
-📊 Reporting module
-
-🛡 Input validation module
-
-❌ Exception handling
-
-🛠 Technologies Used
-
-Python 3
-
-Lists & Dictionaries
-
-List Comprehensions
-
-Exception Handling
-
-Modular Programming
-
-▶️ How to Run
-
-1️⃣ Make sure Python 3 is installed
-
-2️⃣ Run the main file:
-
-python main.py
-🧠 Data Structure
+🧠 Data Model
 
 Each item is stored as a dictionary:
 
@@ -75,201 +63,40 @@ Each item is stored as a dictionary:
     "notes": str
 }
 
-All items are stored in a shared inventory list managed by the core module.
+All items are managed in a centralized inventory list.
 
-📊 Reports Module
+▶️ How to Run
 
-The reports.py module may include:
+Make sure you have Python 3 installed
 
-📈 Total inventory value
+Open the project folder in terminal
 
-📦 Items grouped by category
+Run:
 
-📉 Low stock alerts
+python main.py
+📊 Reporting Features
 
-📄 Loan summaries
+The reporting module can include:
 
-🛡 Validators Module
+Total inventory value calculation
 
-The validators.py module centralizes:
+Items grouped by category
 
-Numeric input validation
+Low stock alerts
 
-Condition validation (new/used)
-
-Duplicate name checking
-
-Data sanitization
-
-This improves code reusability and keeps the core logic clean.
-
-🔮 Future Improvements
-
-💾 JSON file persistence
-
-🗄 SQLite database integration
-
-🖥 GUI version (Tkinter)
-
-🌐 Web API (Flask / FastAPI)
-
-🧪 Unit testing with pytest
-
-📊 Advanced reporting (CSV export)
-
-📄 License
-
-MIT License
-
-Se quiseres, posso agora:
-
-🔥 Deixar isto com nível “GitHub Portfolio Ready”
-
-📊 Criar uma secção de badges (Python version, license, etc.)
-
-🧪 Escrever testes unitários para a estrutura modular
-
-💼 Adaptar o README para candidatura a estágio/emprego
-
-Qual é o objetivo do projeto? Académico ou portefólio profissional?
-
-deixa com visual github portifolio ready 
-
-Aqui está a versão GitHub Portfolio Ready — mais profissional, com badges, descrição estratégica e foco em arquitetura 👇
-
-📦 Inventory Management System
-
-
-
-
-
-
-
-
-A modular Command-Line Inventory Management System built with Python, designed using clean code principles and separation of concerns.
-
-This project demonstrates:
-
-Structured architecture
-
-Input validation layer
-
-Reporting module
-
-Business logic isolation
-
-Error handling best practices
-
-🚀 Overview
-
-The system allows users to:
-
-Register new inventory items
-
-Prevent duplicate item names
-
-Search items by name or category
-
-Add or remove stock
-
-Register item loans
-
-Generate inventory reports
-
-Validate inputs using a dedicated validation layer
-
-🧱 Architecture
-
-The project follows a modular design pattern, separating responsibilities across multiple files.
-
-inventory-system/
-│
-├── main.py
-├── core.py
-├── reports.py
-├── validators.py
-└── README.md
-📌 Module Breakdown
-Module	Responsibility
-main.py	Application entry point & user interaction
-core.py	Inventory business logic
-reports.py	Reporting & analytics
-validators.py	Input validation & data integrity
-
-This separation improves:
-
-Maintainability
-
-Scalability
-
-Readability
-
-Testability
-
-🧠 Core Data Structure
-
-Each inventory item is stored as a dictionary:
-
-{
-    "id": int,
-    "name": str,
-    "quantity": int,
-    "price": float,
-    "category": str,
-    "condition": str,
-    "notes": str
-}
-
-All items are stored in a centralized inventory list managed by the core module.
-
-📊 Reporting Capabilities
-
-The reporting module supports:
-
-📈 Total inventory value calculation
-
-📦 Items grouped by category
-
-⚠ Low stock detection
-
-📄 Inventory summary views
+Inventory summaries
 
 🛡 Validation Layer
 
 The validators.py module ensures:
 
-Numeric validation for quantity and price
+Numeric input validation
 
 Duplicate name prevention
 
 Condition validation (new/used)
 
-Input sanitization
-
-This keeps business logic clean and improves reliability.
-
-▶️ Running the Project
-1️⃣ Clone the repository
-git clone https://github.com/yourusername/inventory-system.git
-2️⃣ Navigate to the project folder
-cd inventory-system
-3️⃣ Run the application
-python main.py
-🧪 Possible Enhancements
-
-Future improvements could include:
-
-💾 Persistent storage (JSON / SQLite)
-
-🧪 Unit testing (pytest)
-
-📤 CSV export for reports
-
-🖥 Graphical interface (Tkinter)
-
-🌐 REST API version (Flask / FastAPI)
-
-👥 Authentication system
+Clean and consistent data handling
 
 📚 Concepts Demonstrated
 
@@ -277,16 +104,30 @@ Modular Programming
 
 Separation of Concerns
 
+CLI Application Design
+
 Data Validation
 
 Error Handling
 
 List Comprehensions
 
-Dictionary-based Data Modeling
+Dictionary-Based Data Modeling
 
-CLI Application Design
+🔮 Future Improvements
+
+Persistent storage (JSON or SQLite)
+
+Unit testing with pytest
+
+CSV export for reports
+
+Graphical interface (Tkinter)
+
+REST API version (Flask / FastAPI)
+
+Authentication system
 
 📄 License
 
-MIT License — feel free to use, modify, and distribute.
+MIT License — free to use and modify.
